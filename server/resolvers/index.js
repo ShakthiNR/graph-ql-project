@@ -1,5 +1,12 @@
 import { RegisterUser, getUser as User, LoginUser } from "./User";
-import { getTodos as Todo, addTodo as AddTodo, removeTodo as RemoveTodo, updateTodo as UpdateTodo } from "./Todo"
+import {
+    getTodos as Todo,
+    addTodo as AddTodo, 
+    removeTodo as RemoveTodo, 
+    updateTodo as UpdateTodo, 
+    updateTodoOrders as UpdateTodoOrders, 
+    removeTodos as RemoveTodos
+} from "./Todo"
 import { GraphQLScalarType } from 'graphql';
 import { Kind } from 'graphql/language';
 
@@ -14,7 +21,9 @@ const resolvers = {
         LoginUser,
         AddTodo,
         RemoveTodo,
-        UpdateTodo
+        UpdateTodo,
+        UpdateTodoOrders,
+        RemoveTodos
     },
     Date: new GraphQLScalarType({
         name: 'Date',
@@ -27,7 +36,7 @@ const resolvers = {
         },
         parseLiteral(ast) {
             if (ast.kind === Kind.INT) {
-            return parseInt(ast.value, 10); // ast value is always in string format
+                return parseInt(ast.value, 10); // ast value is always in string format
             }
             return null;
         },

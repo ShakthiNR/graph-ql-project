@@ -18,6 +18,7 @@ const typeDefs = gql`
     description: String!
     createdAt: Date!
     updatedAt: Date!
+    order: Int
   }
 
   input RegisterInput {
@@ -39,10 +40,15 @@ const typeDefs = gql`
   }
 
   input UpdateInput {
-    id: ID!
+    _id: ID!
     task: String
     description: String
     isCompleted: Boolean
+  }
+
+  input UpdateOrderInput{
+    _id: ID!
+    order:Int!
   }
 
   type Query {
@@ -56,6 +62,8 @@ const typeDefs = gql`
     AddTodo(todoInput: TodoInput): Todo
     RemoveTodo(id: ID!): String
     UpdateTodo(updateInput: UpdateInput): Todo!
+    UpdateTodoOrders(updateOrderInput: [UpdateOrderInput!]!): String
+    RemoveTodos(userId: ID!) :String
   }
 `;
 

@@ -1,5 +1,9 @@
 import { Schema, model } from "mongoose";
+import autoIncrement from 'mongoose-auto-increment';
+import mongoose from "mongoose"
+autoIncrement.initialize(mongoose.connection);
 const ObjectId = Schema.Types.ObjectId
+
 
 const todoSchema = new Schema({
     task: {
@@ -9,10 +13,12 @@ const todoSchema = new Schema({
     isCompleted: {
         type: Boolean,
         default: false,
-        required: true
     },
     description: {
         type: String
+    },
+    order: {
+        type: Number,
     },
     userId: {
         type: ObjectId,
@@ -23,5 +29,6 @@ const todoSchema = new Schema({
 })
 
 const Todo = model("Todo", todoSchema)
+
 
 export default Todo
